@@ -111,7 +111,7 @@ from qgis_fmask.interfaces.landsatmeta import find_mtl_in_product_dir
 )
 @redirect_stdout_to_feedback
 def fmasklandsat(instance, parameters, context, feedback, inputs):
-    """ fmasklandsat """
+    """fmasklandsat"""
 
     productdir = instance.parameterAsString(parameters, "productdir", context)
     landsatkeynr = instance.parameterAsInt(parameters, "landsatkeynr", context)

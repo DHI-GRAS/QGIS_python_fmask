@@ -1,7 +1,11 @@
 import os
 import fnmatch
 
-from .buildvrt import buildvrt
+import sys
+
+if os.path.dirname(__file__) not in sys.path:
+    sys.path.append(os.path.dirname(__file__))
+import buildvrt as bv
 
 
 def recursive_glob(rootdir, pattern="*"):
@@ -19,6 +23,6 @@ def create_sentinel_stack(granuledir, outfile):
         if not bandfiles:
             raise RuntimeError("No files found for pattern '{}'.".format(fnpattern))
         infiles += bandfiles
-    buildvrt(
+    bv.buildvrt(
         infiles, outfile, resolution="user", separate=True, extra=["-tr", "20", "20"]
     )

@@ -1,7 +1,11 @@
 import os
 import glob
 
-from .buildvrt import buildvrt
+import sys
+
+if os.path.dirname(__file__) not in sys.path:
+    sys.path.append(os.path.dirname(__file__))
+import buildvrt as bv
 
 
 bandfile_patterns = {
@@ -16,7 +20,7 @@ def create_landsat_stack(productdir, outfile, landsatkey, imagename):
     infiles = sorted(glob.glob(pattern))
     if not infiles:
         raise RuntimeError("No files found for pattern '{}'.".format(pattern))
-    buildvrt(infiles, outfile, separate=True)
+    bv.buildvrt(infiles, outfile, separate=True)
 
 
 def create_landsat_stacks(productdir, outfile_template, landsatkey):
